@@ -15,12 +15,12 @@ plugins.push(new webpack.optimize.UglifyJsPlugin());
 
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/react-simple-fetch.js'),
+  entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
     libraryTarget: 'umd',
-    library : 'ReactSimpleFetch',
+    library : 'Uploader',
   },
   externals: {
     'react': {
@@ -39,13 +39,17 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
           presets: ['es2015', 'react']
         }
       },
+      {
+        test: /\.css$/,
+        loader: "style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]"
+      }
     ],
   },
   plugins: plugins,
